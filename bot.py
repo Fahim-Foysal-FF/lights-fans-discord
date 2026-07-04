@@ -12,13 +12,8 @@ from datetime import datetime
 # ==========================================
 # 1. CONFIGURATION
 # ==========================================
-<<<<<<< HEAD
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-=======
-DISCORD_TOKEN = ""  # Replace with your NEW token after resetting
-GEMINI_API_KEY = ""  # Replace with your full key from aistudio.google.com
->>>>>>> 9435911ebe50be9788439699be3b0386105c3dc7
 API_BASE_URL = "http://127.0.0.1:8000/api"
 ALERT_CHANNEL_ID = os.getenv("ALERT_CHANNEL_ID")
 
