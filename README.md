@@ -21,6 +21,7 @@
 - [Running the Project](#-running-the-project)
 - [API Documentation](#-api-documentation)
 - [Discord Bot Commands](#-discord-bot-commands)
+- [Diagrams](#-diagrams)
 - [Screenshots](#-screenshots)
 - [Troubleshooting](#-troubleshooting)
 
@@ -99,6 +100,7 @@ flowchart LR
 
 📐 See [`diagrams/architecture.png`](./diagrams/architecture.png) for the full system diagram.  
 📐 See [`diagrams/office-layout.png`](./diagrams/office-layout.png) for the office floor plan reference.
+📐 See [`diagrams/circuit diagram.png`](./diagrams/circuit diagram.png) for the circuit diagram.
 
 ---
 
@@ -130,7 +132,7 @@ lights-fans-discord/
 ├── diagrams/
 │   ├── architecture.png   # System architecture diagram
 │   ├── office-layout.png  # Office floor plan reference
-│   └── data-flow.png      # Data flow diagram
+│   └── circuit diagram.png      # circuit diagram
 │
 └── screenshots/
     ├── dashboard.png      # Web dashboard view
@@ -158,7 +160,7 @@ text
 ### Step 1: Clone the Repository
 
 ```bash
-git clone [https://github.com/YOUR_USERNAME/lights-fans-discord.git](https://github.com/YOUR_USERNAME/lights-fans-discord.git)
+git clone [https://github.com/Fahim-Foysal-FF/lights-fans-discord.git](https://github.com/Fahim-Foysal-FF/lights-fans-discord.git)
 cd lights-fans-discord
 ```
 
@@ -287,6 +289,16 @@ The bot continuously monitors the backend and posts alerts to the configured cha
 * Devices in a room have been **ON for 2+ hours** continuously.
 
 ---
+
+## Diagrams
+
+**Architecture** ![Architecture](diagrams/architecture.png)
+
+**Office Layout** ![Office Layout](diagrams/office-layout.png)
+
+**Proactive Alerts** `Wokwi circuit diagram link: https://wokwi.com/projects/468556048308251649`
+![Alerts](diagrams/circuit%20diagram.png)
+
 
 ## 📸 Screenshots
 
