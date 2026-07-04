@@ -314,8 +314,8 @@ This project is licensed under the MIT License — see the LICENSE file for deta
 👤 Author
 Your Name
 
-GitHub: @your-username
-Discord: your-discord-tag
+GitHub: @Fahim-Foysal-FF
+Discord: FF28.
 🙏 Acknowledgments
 Built for the "Lights, Fans, Discord: The Boss's Big Idea" hackathon challenge
 Powered by FastAPI, discord.py, and Google Gemini
