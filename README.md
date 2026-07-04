@@ -65,23 +65,36 @@ This project solves that with:
 
 ---
 
-## 🏗️ System Architecture
-┌─────────────────┐ ┌──────────────────┐ ┌─────────────────┐
-│ Web Dashboard │◄────────┤ FastAPI ├────────►│ Discord Bot │
-│ (index.html) │ HTTP │ Backend │ HTTP │ (bot.py) │
-│ │ JSON │ (main.py) │ JSON │ │
-│ - Live Map │ │ │ │ - Commands │
-│ - Power Stats │ │ - Device DB │ │ - Alerts │
-│ - Alerts UI │ │ - Simulator │ │ - Gemini AI │
-└─────────────────┘ │ - Alert Logic │ └────────┬────────┘
-└──────────────────┘ │
-▼
-┌─────────────────┐
-│ Gemini API │
-│ (Google AI) │
-└─────────────────┘
+## System Architecture
 
-text
+The project utilizes a decoupled architecture where a central FastAPI backend serves data to a web frontend and communicates with a Discord bot interface powered by Google's Gemini AI.
+
+
+flowchart LR
+    %% Define Node Styles
+    classDef frontend fill:#1e40af,stroke:#60a5fa,stroke-width:2px,color:#fff;
+    classDef backend fill:#166534,stroke:#4ade80,stroke-width:2px,color:#fff;
+    classDef bot fill:#4c1d95,stroke:#a78bfa,stroke-width:2px,color:#fff;
+    classDef api fill:#9f1239,stroke:#fb7185,stroke-width:2px,color:#fff;
+
+    %% Nodes
+    A["🖥️ Web Dashboard<br/>(index.html)<br/><hr><div style='text-align:left; font-size:12px;'>• Live Map<br/>• Power Stats<br/>• Alerts UI</div>"]:::frontend
+    B["⚙️ FastAPI Backend<br/>(main.py)<br/><hr><div style='text-align:left; font-size:12px;'>• Device DB<br/>• Simulator<br/>• Alert Logic</div>"]:::backend
+    C["🤖 Discord Bot<br/>(bot.py)<br/><hr><div style='text-align:left; font-size:12px;'>• Commands<br/>• Alerts<br/>• Gemini AI</div>"]:::bot
+    D("✨ Gemini API<br/>(Google AI)"):::api
+
+    %% Connections
+    A <-->|"HTTP / JSON"| B
+    B <-->|"HTTP / JSON"| C
+    C -->|"Prompts & Context"| D
+
+
+### Component Breakdown
+
+* **Web Dashboard (`index.html`)**: The frontend interface for users to monitor the system. It visualizes the live map, displays real-time power statistics, and provides a dedicated UI for managing alerts.
+* **FastAPI Backend (`main.py`)**: The core engine and central hub of the system. It handles HTTP requests, manages the device database, runs system simulations, and continuously evaluates conditions to trigger alert logic.
+* **Discord Bot (`bot.py`)**: A ChatOps interface that allows users to interact with the system via Discord commands. It receives alerts from the backend and integrates directly with Google's Gemini AI to provide intelligent, contextual responses.
+* **Gemini API**: External AI service utilized by the Discord bot to enhance user interaction, analyze alerts, or answer queries organically.
 
 
 📐 See [`diagrams/architecture.png`](./diagrams/architecture.png) for the full system diagram.  
