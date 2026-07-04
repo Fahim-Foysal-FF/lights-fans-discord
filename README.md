@@ -292,7 +292,7 @@ The bot continuously monitors the backend and posts alerts to the configured cha
 
 **Web Dashboard** ![Web Dashboard](screenshots/dashboard.png)
 
-**Discord Bot Commands** ![Bot Commands](screenshots/discord-commands.png)
+**Discord Bot Commands** ![Bot Commands1](screenshots/discord-commands1.png) [Bot Commands2](screenshots/discord-commands2.png)
 
 **Proactive Alerts** ![Alerts](screenshots/discord-alerts.png)
 
