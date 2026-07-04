@@ -8,8 +8,8 @@ from datetime import datetime
 # ==========================================
 # 1. CONFIGURATION
 # ==========================================
-DISCORD_TOKEN = "MTUyMjY1NjU5NzUwMTkzOTczMg.GGA7Xl.dN1p6GRiRBh338Gt3Cyc5AGTaMPm_tEM0Oelyw"  # Replace with your NEW token after resetting
-GEMINI_API_KEY = "AQ.Ab8RN6KMaeJH8hL6kIhVk1QI1NPR6sTNbHO4M8rLSqkqDwoBbw"  # Replace with your full key from aistudio.google.com
+DISCORD_TOKEN = ""  # Replace with your NEW token after resetting
+GEMINI_API_KEY = ""  # Replace with your full key from aistudio.google.com
 API_BASE_URL = "http://127.0.0.1:8000/api"
 ALERT_CHANNEL_ID = 1522662195870175416
 
