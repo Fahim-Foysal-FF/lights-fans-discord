@@ -115,26 +115,28 @@ flowchart LR
 ---
 
 ## 📁 Project Structure
+
+```text
 lights-fans-discord/
 │
-├── main.py # FastAPI backend + device simulator
-├── bot.py # Discord bot with Gemini AI
-├── index.html # Live web dashboard
-├── requirements.txt # Python dependencies
-├── .env.example # Template for environment variables
-├── .gitignore # Prevents secrets/venv from being pushed
-├── README.md # This file
+├── main.py                # FastAPI backend + device simulator
+├── bot.py                 # Discord bot with Gemini AI
+├── index.html             # Live web dashboard
+├── requirements.txt       # Python dependencies
+├── .env.example           # Template for environment variables
+├── .gitignore             # Prevents secrets/venv from being pushed
+├── README.md              # This file
 │
 ├── diagrams/
-│ ├── architecture.png # System architecture diagram
-│ ├── office-layout.png # Office floor plan reference
-│ └── data-flow.png # Data flow diagram
+│   ├── architecture.png   # System architecture diagram
+│   ├── office-layout.png  # Office floor plan reference
+│   └── data-flow.png      # Data flow diagram
 │
 └── screenshots/
-├── dashboard.png # Web dashboard view
-├── discord-alerts.png # Bot in action
-└── discord-commands.png # Bot command examples
-
+    ├── dashboard.png      # Web dashboard view
+    ├── discord-alerts.png # Bot in action
+    └── discord-commands.png # Bot command examples
+```
 text
 
 
