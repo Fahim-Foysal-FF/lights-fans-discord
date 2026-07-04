@@ -312,7 +312,7 @@ Pull requests welcome! For major changes, please open an issue first.
 This project is licensed under the MIT License — see the LICENSE file for details.
 
 👤 Author
-Your Name
+Fahim-Foysal
 
 GitHub: @Fahim-Foysal-FF
 Discord: FF28.
