@@ -69,7 +69,7 @@ This project solves that with:
 
 The project utilizes a decoupled architecture where a central FastAPI backend serves data to a web frontend and communicates with a Discord bot interface powered by Google's Gemini AI.
 
-
+```mermaid
 flowchart LR
     %% Define Node Styles
     classDef frontend fill:#1e40af,stroke:#60a5fa,stroke-width:2px,color:#fff;
@@ -87,7 +87,7 @@ flowchart LR
     A <-->|"HTTP / JSON"| B
     B <-->|"HTTP / JSON"| C
     C -->|"Prompts & Context"| D
-
+```
 
 ### Component Breakdown
 
