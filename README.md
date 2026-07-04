@@ -153,115 +153,106 @@ text
 
 ---
 
+## 🚀 Installation & Setup
+
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/lights-fans-discord.git
+git clone [https://github.com/YOUR_USERNAME/lights-fans-discord.git](https://github.com/YOUR_USERNAME/lights-fans-discord.git)
 cd lights-fans-discord
-Step 2: Create a Virtual Environment
-Windows (PowerShell):
+```
 
-PowerShell
+### Step 2: Create a Virtual Environment & Install Dependencies
 
+**Windows (PowerShell):**
+```powershell
 python -m venv .venv
 .venv\Scripts\Activate.ps1
-macOS / Linux:
+pip install -r requirements.txt
+```
 
-Bash
-
+**macOS / Linux:**
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
-Step 3: Install Dependencies
-Bash
-
 pip install -r requirements.txt
-Step 4: Get Your API Keys
-🔑 Discord Bot Token
-Go to Discord Developer Portal
-Click "New Application" → give it a name
-Go to "Bot" in left sidebar → click "Add Bot"
-Under "Token" section, click "Reset Token" → copy the token
-Enable these intents: Message Content Intent, Server Members Intent
-Go to "OAuth2 > URL Generator":
-Scopes: bot
-Bot Permissions: Send Messages, Read Message History
-Copy the generated URL and paste in browser to invite the bot to your server
-🔑 Gemini API Key
-Go to Google AI Studio
-Click "+ Create API Key" → choose "Create in new project"
-Copy the key (starts with AIzaSy...)
-🔑 Discord Channel ID
-In Discord, enable Developer Mode (Settings → Advanced → Developer Mode)
-Right-click on the channel where you want alerts → "Copy Channel ID"
-Step 5: Configure Environment Variables
-Create a .env file in the project root (copy from .env.example):
+```
 
-env
+### Step 3: Get Your API Keys
 
+**🔑 Discord Bot Token**
+1. Go to the [Discord Developer Portal](https://discord.com/developers/applications).
+2. Click **New Application** and give it a name.
+3. Go to **Bot** in the left sidebar and click **Add Bot**.
+4. Under the "Token" section, click **Reset Token** and copy it.
+5. **Important:** Enable the **Message Content Intent** and **Server Members Intent**.
+6. Go to **OAuth2 > URL Generator**:
+   * Scopes: `bot`
+   * Bot Permissions: `Send Messages`, `Read Message History`
+7. Copy the generated URL and paste it into your browser to invite the bot to your server.
+
+**🔑 Gemini API Key**
+1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey).
+2. Click **+ Create API Key** and choose "Create in new project".
+3. Copy the key (it should start with `AIzaSy...`).
+
+**🔑 Discord Channel ID**
+1. In Discord, enable Developer Mode (**Settings → Advanced → Developer Mode**).
+2. Right-click on the text channel where you want alerts to appear and select **Copy Channel ID**.
+
+### Step 4: Configure Environment Variables
+
+Create a `.env` file in the project root (you can copy from `.env.example`):
+
+```env
 DISCORD_TOKEN=your_discord_bot_token_here
 GEMINI_API_KEY=AIzaSy_your_gemini_key_here
 ALERT_CHANNEL_ID=1234567890123456789
-⚠️ Never commit your .env file to Git! It's already in .gitignore.
+```
+> **⚠️ Note:** Never commit your `.env` file to Git! It is already included in the `.gitignore`.
 
-▶️ Running the Project
-You'll need 3 terminal windows — one for each component.
+---
 
-Terminal 1 — Start the Backend API
-Bash
+## ▶️ Running the Project
 
+You will need **3 terminal windows** open (ensure your virtual environment is activated in each).
+
+**Terminal 1 — Start the Backend API**
+```bash
 python main.py
-You should see:
+```
+*Expected Output:* `✅ Backend API started successfully! 📡 API available at: http://127.0.0.1:8000`
 
-text
-
-✅ Backend API started successfully!
-📡 API available at: http://127.0.0.1:8000
-📖 API docs available at: http://127.0.0.1:8000/docs
-Terminal 2 — Start the Discord Bot
-Bash
-
+**Terminal 2 — Start the Discord Bot**
+```bash
 python bot.py
-You should see:
+```
+*Expected Output:* `✅ Bot logged in as: Energy bot | ✅ Backend API connection: SUCCESSFUL`
 
-text
+**Terminal 3 — Open the Dashboard**
+Simply open `index.html` in your web browser:
+* **Windows:** `start index.html`
+* **macOS:** `open index.html`
+* **Linux:** `xdg-open index.html`
 
-✅ Bot logged in as: Energy bot
-✅ Backend API connection: SUCCESSFUL
-🔔 Starting proactive alert monitor...
-Terminal 3 — Open the Dashboard
-Simply open index.html in your web browser:
+---
 
-Windows:
+## 📡 API Documentation
 
-PowerShell
+Once the backend is running, interactive API docs (Swagger UI) are automatically available at: **http://127.0.0.1:8000/docs**
 
-start index.html
-macOS:
+### Endpoints
 
-Bash
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/` | API Health check |
+| `GET` | `/api/devices` | Get all 15 devices with current status |
+| `GET` | `/api/power` | Get current power consumption per room |
+| `GET` | `/api/alerts` | Get active alerts |
+| `POST` | `/api/devices/{id}/toggle` | Manually toggle a specific device |
 
-open index.html
-Linux:
-
-Bash
-
-xdg-open index.html
-Or just double-click the file in your file explorer.
-
-📡 API Documentation
-Once the backend is running, interactive API docs are available at:
-http://127.0.0.1:8000/docs (Swagger UI, auto-generated by FastAPI)
-
-Endpoints
-Method	Endpoint	Description
-GET	/	Health check
-GET	/api/devices	Get all 15 devices with status
-GET	/api/power	Get current power consumption per room
-GET	/api/alerts	Get active alerts
-POST	/api/devices/{id}/toggle	Manually toggle a device
-Example Response — GET /api/devices
-JSON
-
+### Example Response (`GET /api/devices`)
+```json
 {
   "devices": [
     {
@@ -275,64 +266,79 @@ JSON
     }
   ]
 }
-🤖 Discord Bot Commands
-Command	Description	Example
-!ping	Check bot & API health	!ping
-!status	Overview of all devices	!status
-!room <name>	Details of a specific room	!room Drawing Room
-!usage	Power & cost report	!usage
-!alerts	Manual alert check	!alerts
-!help_office	Show all commands	!help_office
-🔔 Automatic Alerts
-The bot posts alerts to the configured channel every minute when:
+```
 
-Devices are ON outside 9 AM – 5 PM (after-hours)
-All devices in a room have been ON for 2+ hours (continuous usage)
-📸 Screenshots
-Web Dashboard
-Dashboard
+---
 
-Discord Bot in Action
-Bot Commands
+## 🤖 Discord Bot Commands
 
-Proactive Alerts
-Alerts
+| Command | Description | Example |
+| :--- | :--- | :--- |
+| `!ping` | Check bot & API health status | `!ping` |
+| `!status` | Quick overview of all devices | `!status` |
+| `!room <name>` | Details of a specific room | `!room Drawing Room` |
+| `!usage` | Real-time power & cost report | `!usage` |
+| `!alerts` | Manually check for active alerts | `!alerts` |
+| `!help_office` | Show all available commands | `!help_office` |
 
-🔧 Troubleshooting
-❌ "Backend offline" on dashboard
-Make sure python main.py is running in a separate terminal
-Check that port 8000 is not being used by another app
-Verify no firewall is blocking localhost:8000
-❌ Discord bot: "Improper token has been passed"
-Your token was revoked (probably exposed publicly)
-Reset it at Discord Developer Portal → Bot → Reset Token
-Never commit tokens to Git!
-❌ Gemini: "PERMISSION_DENIED"
-You're using a Cloud Console key (starts with AQ.) — wrong format
-Get an AI Studio key (starts with AIzaSy) from aistudio.google.com/app/apikey
-❌ Bot connects but sends no alerts
-Verify ALERT_CHANNEL_ID matches your Discord channel
-Bot needs Send Messages permission in that channel
-Alerts only trigger outside 9 AM – 5 PM, or after 2+ hours of continuous use
-❌ Dashboard shows devices, but no map updates
-Open browser DevTools (F12) → Check Console tab for errors
-CORS errors mean backend isn't running or allow_origins is misconfigured
-🎬 Demo Video
-📺 Watch the demo video here
+### 🔔 Automatic Alerts
+The bot continuously monitors the backend and posts alerts to the configured channel every minute when:
+* Devices are left **ON** outside of business hours (9 AM – 5 PM).
+* Devices in a room have been **ON for 2+ hours** continuously.
 
-🤝 Contributing
-Pull requests welcome! For major changes, please open an issue first.
+---
 
-📜 License
+## 📸 Screenshots
+
+**Web Dashboard** ![Web Dashboard](screenshots/dashboard.png)
+
+**Discord Bot Commands** ![Bot Commands](screenshots/discord-commands.png)
+
+**Proactive Alerts** ![Alerts](screenshots/discord-alerts.png)
+
+---
+
+## 🔧 Troubleshooting
+
+**❌ "Backend offline" on dashboard**
+* Make sure `python main.py` is running in a separate terminal.
+* Check that port `8000` is not being used by another application.
+* Verify your firewall is not blocking `localhost:8000`.
+
+**❌ Discord bot: "Improper token has been passed"**
+* Your token was likely revoked by Discord (often happens if exposed publicly).
+* Reset it at the Discord Developer Portal → Bot → Reset Token.
+
+**❌ Gemini: "PERMISSION_DENIED"**
+* You are likely using a Google Cloud Console key (starts with `AQ.`), which is the wrong format.
+* Get an AI Studio key (starts with `AIzaSy`) from `aistudio.google.com/app/apikey`.
+
+**❌ Bot connects but sends no alerts**
+* Verify `ALERT_CHANNEL_ID` matches your exact Discord channel.
+* Ensure the bot has the "Send Messages" permission in that specific channel.
+* *Note: Alerts only trigger outside 9 AM–5 PM, or after 2+ hours of continuous usage.*
+
+**❌ Dashboard shows devices, but no map updates**
+* Open your browser's DevTools (F12) and check the Console tab for errors.
+* CORS errors usually indicate the backend isn't running or `allow_origins` is misconfigured in `main.py`.
+
+---
+
+## 🎬 Demo Video
+📺 [Watch the demo video here](#) *(Link to your video)*
+
+## 🤝 Contributing
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+## 📜 License
 This project is licensed under the MIT License — see the LICENSE file for details.
 
-👤 Author
-Fahim-Foysal
+## 👤 Author
+**Fahim-Foysal**
+* GitHub: [@Fahim-Foysal-FF](https://github.com/Fahim-Foysal-FF)
+* Discord: `FF28.`
 
-GitHub: @Fahim-Foysal-FF
-Discord: FF28.
-🙏 Acknowledgments
-Built for the "Lights, Fans, Discord: The Boss's Big Idea" hackathon challenge
-Powered by FastAPI, discord.py, and Google Gemini
-Inspired by real-world office energy waste problems
-
+## 🙏 Acknowledgments
+* Built for the *"Lights, Fans, Discord: The Boss's Big Idea"* hackathon challenge.
+* Powered by **FastAPI**, **discord.py**, and **Google Gemini**.
+* Inspired by real-world office energy waste problems.
